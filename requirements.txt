@@ -1,0 +1,6 @@
+crewai>=0.28.0
+crewai-tools>=0.1.12
+payments-py>=0.1.0
+python-dotenv>=1.0.0
+openai>=1.4.0
+langchain-openai>=0.0.5 

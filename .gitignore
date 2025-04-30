@@ -1,0 +1,49 @@
+# Environment and virtual environments
+.env
+venv/
+env/
+ENV/
+.python-version
+
+# Python bytecode files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution and packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Unit test and coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Project specific
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local 
+
+/cursor
+/docs
