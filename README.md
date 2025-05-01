@@ -53,6 +53,44 @@ The integration follows this flow:
 
 All payments are securely managed using Nevermined API key authentication and payment protocol, ensuring transparent, verifiable interactions between agents.
 
+## Technical Details of the Integration
+
+This starter kit demonstrates several key technical concepts:
+
+### 1. AI Agent Monetization
+
+The core concept demonstrated is how AI agent capabilities can be monetized through a decentralized payment system. In this model:
+
+- Each AI agent (like our Analyzer and Summarizer) represents a specialized service with unique capabilities
+- Access to these agent services requires payment through the Nevermined protocol
+- Payments are handled securely and transparently, with agreement IDs providing verification of transactions
+
+### 2. Tokenized Service Access
+
+The integration shows how service access can be tokenized and managed through:
+
+- Service DIDs (Decentralized Identifiers) that uniquely identify each agent service
+- Payment amounts that represent the cost to access each service
+- Access tokens and credentials that authorize usage after payment
+
+### 3. Orchestration with Payment Dependencies
+
+A critical aspect demonstrated is the orchestration of agents with payment-dependent tasks:
+
+- The Orchestrator agent manages the workflow and handles payments
+- Each agent's work is contingent on successful payment
+- The CrewAI task system enforces these dependencies through contextual relationships
+- Payments serve as "gates" that must be cleared before specialized agent work can proceed
+
+### 4. Fallback and Error Handling
+
+The implementation demonstrates robust error handling:
+
+- Attempts to use the real Nevermined payment system when credentials are available
+- Gracefully falls back to a mock implementation when there are issues
+- Logs detailed error information to help with debugging
+- Ensures the demo can continue running even when there are infrastructure or credential issues
+
 ## Implementation Details
 
 The payment tool is implemented using CrewAI's `@tool` decorator:
@@ -60,11 +98,30 @@ The payment tool is implemented using CrewAI's `@tool` decorator:
 ```python
 @tool("Nevermined Payment Tool")
 def nevermined_payment_tool(service_did: str, payment_amount: str) -> str:
-    """Handles payments via Nevermined protocol"""
-    # Tool implementation...
+    """Handles payments via Nevermined protocol
+    
+    Args:
+        service_did: The DID of the service to pay for
+        payment_amount: The amount to pay (in wei)
+        
+    Returns:
+        A confirmation message with the agreement ID
+    """
+    # Implementation that tries real payment processing first,
+    # with fallback to mock implementation if needed
 ```
 
-This approach allows for easy integration with CrewAI agents and tasks, providing a clean interface for handling payments through the Nevermined protocol.
+When executed, the tool:
+
+1. Checks for valid Nevermined API credentials
+2. If credentials are available, attempts to:
+   - Initialize the Payments client
+   - Get access to the specified service
+   - Create an agreement for the payment
+3. If any step fails, falls back to a mock implementation that simulates successful payment
+4. Returns a confirmation message with an agreement ID (real or mock)
+
+This approach enables both educational demonstrations and real-world usage with minimal code changes, making it ideal for anyone exploring AI monetization concepts through Nevermined.
 
 ## Support & Issues
 
