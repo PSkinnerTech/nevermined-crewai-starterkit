@@ -19,19 +19,19 @@ cd nevermined-crewai-starterkit
 
 2. Set up a Python virtual environment and install dependencies:
 ```bash
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
 3. Configure the environment:
-   - Copy `src/example_env` to `.env` in the project root
+   - Copy `src/.env.example` to `.env` in the project root
    - Update the values with your OpenAI API key and Nevermined API key
    - You can get a Nevermined API key by following the instructions at https://docs.nevermined.app/docs/tutorials/integration/nvm-api-keys
 
 4. Run the starter kit:
 ```bash
-python src/main.py
+python3 src/main.py
 ```
 
 ## What's Included
