@@ -13,8 +13,8 @@ Before you start, ensure you have the following:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/nevermined-io/crew-ai-starter-kit.git
-cd crew-ai-starter-kit
+git clone https://github.com/nevermined-io/nevermined-crewai-starterkit.git
+cd nevermined-crewai-starterkit
 ```
 
 2. Set up a Python virtual environment and install dependencies:
