@@ -2,14 +2,13 @@ import os
 from dotenv import load_dotenv
 from crewai import Agent, Task, Crew
 from langchain_openai import ChatOpenAI
-from tools import NeverminedPaymentTool
+from tools import nevermined_payment_tool
 
 # Load environment variables
 load_dotenv()
 
 def main():
-    # Initialize tools and LLM
-    payment_tool = NeverminedPaymentTool()
+    # Initialize LLM
     llm = ChatOpenAI(openai_api_key=os.getenv("OPENAI_API_KEY"))
     
     # Define agents
@@ -17,7 +16,7 @@ def main():
         role='Orchestrator',
         goal='Manage agent payments and coordinate tasks between agents',
         llm=llm,
-        tools=[payment_tool],
+        tools=[nevermined_payment_tool],
         verbose=True
     )
     
@@ -39,7 +38,7 @@ def main():
     task_pay_analyzer = Task(
         description=f"Pay for the Analyzer service using DID {os.getenv('ANALYZER_SERVICE_DID')} with payment amount {os.getenv('ANALYZER_PAYMENT_AMOUNT')}",
         agent=orchestrator,
-        tools=[payment_tool]
+        tools=[nevermined_payment_tool]
     )
     
     task_analyze = Task(
@@ -51,7 +50,7 @@ def main():
     task_pay_summarizer = Task(
         description=f"Pay for the Summarizer service using DID {os.getenv('SUMMARIZER_SERVICE_DID')} with payment amount {os.getenv('SUMMARIZER_PAYMENT_AMOUNT')}",
         agent=orchestrator,
-        tools=[payment_tool],
+        tools=[nevermined_payment_tool],
         context=[task_analyze]
     )
     
